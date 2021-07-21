@@ -2,13 +2,32 @@
 /*
 READ ME:
 
-    Goal for this report: Integrate in 1 query DSP and Adserver data all Carnival Campaigns
-    Next Steps:
-        -Main Structure (Metrics joined with Finance system): Done
-        -Creative Joins: Done (Pending a Question as per comms down below)
-        -YouTube Data via Union all: Done
-        -Conversion Data: Pending
-        -Gross up: Pending
+ Goal for this query:
+    Integrate into 1 query YTD data of Digital Advertising Campaigns run by one client 
+    and its brands.
+ 
+ What problem are we trying to solve?
+    Currently, people have to manually download data across 3 or more sources of 
+    digital advertising (DSP - Demand Side Platform) and combine all the data into 
+    one excel file to create a report. Also, this report has no connection 
+    with the Finance system which control all the digital advertising bookings and
+    approvals. 
+ 
+ Main Challenges: 
+    1-This query is based on a star schema starting from DSP metrics, which already 
+    contain the fact table of all DSPs, except for 1 metric from YouTube which sits 
+    in another DSP fact table, thus the need to use union all.
+    2-The Finance system not always has a connection with the DSP meta table even 
+    though that should be the best practice. To overcome this I used inner query 
+    within some left joins as the main priority is to showcase what advertising campaign 
+    has run regardless with the 'connection with Finance system is not in place. 
+    Most often that is because a different id was assigned. 
+  
+ Results:
+    Now the analysts can quick query the results and focus on the visualizations
+    and analysis rather than building the database in excel, which has roughly 
+    gave a half day back in the diary. 
+        
 */
 ---------------------------------------------------------------------------------------------------
 -- DSP
